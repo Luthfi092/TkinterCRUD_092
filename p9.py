@@ -58,5 +58,19 @@ def fetch_all():
     conn.close()
     return rows
 
-
+def predict_fakultas(biologi, fisika, inggris):
+    if biologi > fisika and biologi > inggris:
+        return "Kedokteran"
+    elif fisika > biologi and fisika > inggris:
+        return "Teknik"
+    elif inggris > biologi and inggris > fisika:
+        return "Bahasa"
+    else:
+        max_val = max(biologi, fisika, inggris)
+        if biologi == max_val:
+            return "Kedokteran"
+        elif fisika == max_val:
+            return "Teknik"
+        else:
+            return "Bahasa"
 
