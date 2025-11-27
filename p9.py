@@ -226,4 +226,15 @@ class NilaiApp:
         self.clear_form()
         self.load_table()
 
+    def on_delete(self):
+        if self.selected_id is None:
+            messagebox.showwarning("Delete", "Pilih data dulu.")
+            return
+
+        if messagebox.askyesno("Konfirmasi", "Yakin ingin menghapus data ini?"):
+            delete_data(self.selected_id)
+            messagebox.showinfo("Delete", "Data berhasil dihapus.")
+            self.clear_form()
+            self.load_table()
+
    
