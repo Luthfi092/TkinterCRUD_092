@@ -183,7 +183,26 @@ class NilaiApp:
                 return False
         return True
 
-  
+    def on_submit(self):
+        nama = self.entry_nama.get()
+        bio_s = self.entry_bio.get()
+        fis_s = self.entry_fis.get()
+        ing_s = self.entry_ing.get()
+
+        if not self.validate_inputs(nama, bio_s, fis_s, ing_s):
+            return
+
+        bio = float(bio_s)
+        fis = float(fis_s)
+        ing = float(ing_s)
+
+        prediksi = predict_fakultas(bio, fis, ing)
+
+        insert_data(nama, bio, fis, ing, prediksi)
+        messagebox.showinfo('Sukses', f'Data tersimpan. Prediksi: {prediksi}')
+        self.clear_form()
+        self.load_table()
+
    
 
    
