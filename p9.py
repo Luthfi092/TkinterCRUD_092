@@ -74,3 +74,50 @@ def predict_fakultas(biologi, fisika, inggris):
         else:
             return "Bahasa"
 
+class NilaiApp:
+    def __init__(self, root):
+        self.root = root
+        root.title('Input Nilai Siswa - SQLite')
+        root.geometry('900x520')
+        root.minsize(800, 480)
+
+        style = ttk.Style()
+        try:
+            style.theme_use('clam')
+        except Exception:
+            pass
+
+        style.configure('TLabel', font=('Segoe UI', 10))
+        style.configure('TButton', font=('Segoe UI', 10), padding=6)
+        style.configure('Header.TLabel', font=('Segoe UI', 12, 'bold'))
+        style.configure('Treeview.Heading', font=('Segoe UI', 11, 'bold'))
+        style.configure('Treeview', font=('Segoe UI', 10))
+
+        frm_left = ttk.LabelFrame(root, text='Form Input', padding=(12, 12))
+        frm_left.grid(row=0, column=0, sticky='nw', padx=12, pady=12)
+
+        frm_right = ttk.LabelFrame(root, text='Data Tersimpan', padding=(8, 8))
+        frm_right.grid(row=0, column=1, sticky='nsew', padx=12, pady=12)
+
+        ttk.Label(frm_left, text='Nama Siswa:', style='Header.TLabel').grid(row=0, column=0, sticky='w')
+        self.entry_nama = ttk.Entry(frm_left, width=34)
+        self.entry_nama.grid(row=1, column=0, pady=6, sticky='w')
+
+        lbl_nilai = ttk.Label(frm_left, text='Nilai (0-100):', style='Header.TLabel')
+        lbl_nilai.grid(row=2, column=0, sticky='w', pady=(8, 0))
+
+        inner = ttk.Frame(frm_left)
+        inner.grid(row=3, column=0, sticky='w')
+        ttk.Label(inner, text='Biologi').grid(row=0, column=0, padx=(0, 6))
+        self.entry_bio = ttk.Entry(inner, width=8)
+        self.entry_bio.grid(row=0, column=1, padx=(0, 12))
+
+        ttk.Label(inner, text='Fisika').grid(row=0, column=2, padx=(0, 6))
+        self.entry_fis = ttk.Entry(inner, width=8)
+        self.entry_fis.grid(row=0, column=3, padx=(0, 12))
+
+        ttk.Label(inner, text='Inggris').grid(row=0, column=4, padx=(0, 6))
+        self.entry_ing = ttk.Entry(inner, width=8)
+        self.entry_ing.grid(row=0, column=5)
+
+     
