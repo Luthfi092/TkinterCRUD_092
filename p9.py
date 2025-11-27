@@ -120,4 +120,54 @@ class NilaiApp:
         self.entry_ing = ttk.Entry(inner, width=8)
         self.entry_ing.grid(row=0, column=5)
 
-     
+        # tombol CRUD
+        btn_frame = ttk.Frame(frm_left)
+        btn_frame.grid(row=5, column=0, pady=12, sticky='w')
+
+        self.btn_submit = ttk.Button(btn_frame, text='Submit', command=self.on_submit)
+        self.btn_submit.grid(row=0, column=0, padx=(0, 8))
+
+        self.btn_update = ttk.Button(btn_frame, text='Update', command=self.on_update)
+        self.btn_update.grid(row=0, column=1, padx=(0, 8))
+
+        self.btn_delete = ttk.Button(btn_frame, text='Delete', command=self.on_delete)
+        self.btn_delete.grid(row=0, column=2, padx=(0, 8))
+
+        self.btn_clear = ttk.Button(btn_frame, text='Clear', command=self.clear_form)
+        self.btn_clear.grid(row=0, column=3, padx=(0, 8))
+
+        columns = ('id', 'nama', 'biologi', 'fisika', 'inggris', 'prediksi')
+        self.tree = ttk.Treeview(frm_right, columns=columns, show='headings')
+        for col, hd in zip(columns, ['ID', 'Nama', 'Biologi', 'Fisika', 'Inggris', 'Prediksi Fakultas']):
+            self.tree.heading(col, text=hd)
+
+        self.tree.column('id', width=40, anchor='center')
+        self.tree.column('nama', width=180, anchor='w')
+        self.tree.column('biologi', width=80, anchor='center')
+        self.tree.column('fisika', width=80, anchor='center')
+        self.tree.column('inggris', width=80, anchor='center')
+        self.tree.column('prediksi', width=140, anchor='center')
+
+        self.tree.bind("<<TreeviewSelect>>", self.on_row_select)
+
+        vsb = ttk.Scrollbar(frm_right, orient='vertical', command=self.tree.yview)
+        hsb = ttk.Scrollbar(frm_right, orient='horizontal', command=self.tree.xview)
+        self.tree.configure(yscroll=vsb.set, xscroll=hsb.set)
+        self.tree.grid(row=0, column=0, sticky='nsew')
+        vsb.grid(row=0, column=1, sticky='ns')
+        hsb.grid(row=1, column=0, sticky='ew')
+
+        frm_right.grid_rowconfigure(0, weight=1)
+        frm_right.grid_columnconfigure(0, weight=1)
+
+        self.summary = ttk.Label(root, text='', anchor='w')
+        self.summary.grid(row=1, column=0, columnspan=2, sticky='we', padx=14)
+
+        self.selected_id = None
+        self.load_table()
+
+   
+  
+   
+
+   
