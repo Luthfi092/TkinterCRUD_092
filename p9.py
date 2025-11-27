@@ -257,4 +257,20 @@ class NilaiApp:
         self.entry_ing.delete(0, tk.END)
         self.entry_ing.insert(0, values[4])
 
-   
+    def load_table(self):
+        for i in self.tree.get_children():
+            self.tree.delete(i)
+        rows = fetch_all()
+        for r in rows:
+            self.tree.insert('', tk.END, values=r)
+
+        total = len(rows)
+        counts = {'Kedokteran': 0, 'Teknik': 0, 'Bahasa': 0}
+        for r in rows:
+            if r[5] in counts:
+                counts[r[5]] += 1
+
+        self.summary.config(text=f'Total entri: {total} | Kedokteran: {counts["Kedokteran"]} | Teknik: {counts["Teknik"]} | Bahasa: {counts["Bahasa"]}')
+
+
+
