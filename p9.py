@@ -237,4 +237,24 @@ class NilaiApp:
             self.clear_form()
             self.load_table()
 
+    def on_row_select(self, event):
+        selected = self.tree.selection()
+        if not selected:
+            return
+
+        values = self.tree.item(selected[0], 'values')
+        self.selected_id = int(values[0])
+
+        self.entry_nama.delete(0, tk.END)
+        self.entry_nama.insert(0, values[1])
+
+        self.entry_bio.delete(0, tk.END)
+        self.entry_bio.insert(0, values[2])
+
+        self.entry_fis.delete(0, tk.END)
+        self.entry_fis.insert(0, values[3])
+
+        self.entry_ing.delete(0, tk.END)
+        self.entry_ing.insert(0, values[4])
+
    
