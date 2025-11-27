@@ -43,7 +43,12 @@ def update_data(id_val, nama, bio, fis, ing, prediksi):
     conn.commit()
     conn.close()
 
-
+def delete_data(id_val):
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM nilai_siswa WHERE id=?', (id_val,))
+    conn.commit()
+    conn.close()
 
 
 
