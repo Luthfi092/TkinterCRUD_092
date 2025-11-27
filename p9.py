@@ -32,7 +32,16 @@ def insert_data(nama, bio, fis, ing, prediksi):
     conn.commit()
     conn.close()
 
-
+def update_data(id_val, nama, bio, fis, ing, prediksi):
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    cursor.execute('''
+        UPDATE nilai_siswa
+        SET nama_siswa=?, biologi=?, fisika=?, inggris=?, prediksi_fakultas=?
+        WHERE id=?
+    ''', (nama, bio, fis, ing, prediksi, id_val))
+    conn.commit()
+    conn.close()
 
 
 
