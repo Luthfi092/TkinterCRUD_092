@@ -203,6 +203,27 @@ class NilaiApp:
         self.clear_form()
         self.load_table()
 
-   
+    def on_update(self):
+        if self.selected_id is None:
+            messagebox.showwarning("Update", "Pilih data dulu.")
+            return
+
+        nama = self.entry_nama.get()
+        bio_s = self.entry_bio.get()
+        fis_s = self.entry_fis.get()
+        ing_s = self.entry_ing.get()
+
+        if not self.validate_inputs(nama, bio_s, fis_s, ing_s):
+            return
+
+        bio = float(bio_s)
+        fis = float(fis_s)
+        ing = float(ing_s)
+        prediksi = predict_fakultas(bio, fis, ing)
+
+        update_data(self.selected_id, nama, bio, fis, ing, prediksi)
+        messagebox.showinfo("Update", "Data berhasil diupdate.")
+        self.clear_form()
+        self.load_table()
 
    
