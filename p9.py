@@ -166,7 +166,23 @@ class NilaiApp:
         self.selected_id = None
         self.load_table()
 
-   
+    def validate_inputs(self, nama, bio_s, fis_s, ing_s):
+        if not nama.strip():
+            messagebox.showwarning('Validasi', 'Nama siswa harus diisi.')
+            return False
+        try:
+            bio = float(bio_s)
+            fis = float(fis_s)
+            ing = float(ing_s)
+        except ValueError:
+            messagebox.showwarning('Validasi', 'Masukkan nilai numerik.')
+            return False
+        for v in (bio, fis, ing):
+            if v < 0 or v > 100:
+                messagebox.showwarning('Validasi', 'Nilai harus 0-100.')
+                return False
+        return True
+
   
    
 
