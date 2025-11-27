@@ -279,3 +279,8 @@ class NilaiApp:
         self.entry_ing.delete(0, tk.END)
         self.selected_id = None
 
+if __name__ == '__main__':
+    init_db()
+    root = tk.Tk()
+    app = NilaiApp(root)
+    root.mainloop()
