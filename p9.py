@@ -22,7 +22,15 @@ def init_db():
     conn.commit()
     conn.close()
 
-
+def insert_data(nama, bio, fis, ing, prediksi):
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT INTO nilai_siswa (nama_siswa, biologi, fisika, inggris, prediksi_fakultas)
+        VALUES (?, ?, ?, ?, ?)
+    ''', (nama, bio, fis, ing, prediksi))
+    conn.commit()
+    conn.close()
 
 
 
