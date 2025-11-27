@@ -272,5 +272,10 @@ class NilaiApp:
 
         self.summary.config(text=f'Total entri: {total} | Kedokteran: {counts["Kedokteran"]} | Teknik: {counts["Teknik"]} | Bahasa: {counts["Bahasa"]}')
 
-
+    def clear_form(self):
+        self.entry_nama.delete(0, tk.END)
+        self.entry_bio.delete(0, tk.END)
+        self.entry_fis.delete(0, tk.END)
+        self.entry_ing.delete(0, tk.END)
+        self.selected_id = None
 
