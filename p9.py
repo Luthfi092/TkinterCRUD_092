@@ -50,7 +50,13 @@ def delete_data(id_val):
     conn.commit()
     conn.close()
 
-
+def fetch_all():
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    cursor.execute('SELECT id, nama_siswa, biologi, fisika, inggris, prediksi_fakultas FROM nilai_siswa ORDER BY id DESC')
+    rows = cursor.fetchall()
+    conn.close()
+    return rows
 
 
 
